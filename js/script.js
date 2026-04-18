@@ -4,21 +4,21 @@
 const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
 
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "dark") {
-  body.classList.add("dark-mode");
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark-mode");
+  }
 }
 
-themeToggle.addEventListener("click", () => {
+function toggleTheme() {
   body.classList.toggle("dark-mode");
 
-  if (body.classList.contains("dark-mode")) {
-    localStorage.setItem("theme", "dark");
-  } else {
-    localStorage.setItem("theme", "light");
-  }
-});
+  const currentTheme = body.classList.contains("dark-mode") ? "dark" : "light";
+  localStorage.setItem("theme", currentTheme);
+}
 
+themeToggle.addEventListener("click", toggleTheme);
 
 // Project Filtering + Sorting + Search
 
@@ -67,10 +67,11 @@ function updateProjects() {
 
   if (filteredProjects.length === 0) {
     noResultsMessage.textContent = "No matching projects found.";
-  } else {
-    noResultsMessage.textContent = "";
-    filteredProjects.forEach((card) => projectsContainer.appendChild(card));
+    return;
   }
+
+  noResultsMessage.textContent = "";
+  filteredProjects.forEach((card) => projectsContainer.appendChild(card));
 }
 
 categoryFilter.addEventListener("change", updateProjects);
@@ -113,9 +114,9 @@ async function fetchGitHubRepos() {
 
       repoCard.innerHTML = `
         <h3>${repo.name}</h3>
-        <p>${repo.description ? repo.description : "No description available."}</p>
-        <p><strong>Language:</strong> ${repo.language ? repo.language : "Not specified"}</p>
-        <a href="${repo.html_url}" target="_blank">View Repository</a>
+        <p>${repo.description || "No description available."}</p>
+        <p><strong>Language:</strong> ${repo.language || "Not specified"}</p>
+        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">View Repository</a>
       `;
 
       repoContainer.appendChild(repoCard);
@@ -123,7 +124,8 @@ async function fetchGitHubRepos() {
 
     repoMessage.textContent = "";
   } catch (error) {
-    repoMessage.textContent = "Unable to load GitHub repositories right now. Please try again later.";
+    repoMessage.textContent =
+      "Unable to load GitHub repositories right now. Please try again later.";
     console.error("GitHub API error:", error);
   }
 }
@@ -146,10 +148,10 @@ function loadVisitorName() {
   }
 }
 
-saveNameBtn.addEventListener("click", () => {
+function saveVisitorName() {
   const name = visitorNameInput.value.trim();
 
-  if (name === "") {
+  if (!name) {
     welcomeMessage.textContent = "Please enter a valid name.";
     return;
   }
@@ -157,12 +159,15 @@ saveNameBtn.addEventListener("click", () => {
   localStorage.setItem("visitorName", name);
   welcomeMessage.textContent = `Welcome, ${name}! Your name has been saved.`;
   visitorNameInput.value = "";
-});
+}
 
-clearNameBtn.addEventListener("click", () => {
+function clearVisitorName() {
   localStorage.removeItem("visitorName");
   welcomeMessage.textContent = "Saved name cleared.";
-});
+}
+
+saveNameBtn.addEventListener("click", saveVisitorName);
+clearNameBtn.addEventListener("click", clearVisitorName);
 
 
 // Contact Form Validation
@@ -170,8 +175,8 @@ clearNameBtn.addEventListener("click", () => {
 const contactForm = document.getElementById("contactForm");
 const feedback = document.getElementById("form-feedback");
 
-contactForm.addEventListener("submit", function (e) {
-  e.preventDefault();
+function validateContactForm(event) {
+  event.preventDefault();
 
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
@@ -196,11 +201,14 @@ contactForm.addEventListener("submit", function (e) {
 
   feedback.textContent = "Form submitted successfully!";
   contactForm.reset();
-});
+}
+
+contactForm.addEventListener("submit", validateContactForm);
 
 
-// Run on page load
+// Initialize Page
 
+loadTheme();
 updateProjects();
 fetchGitHubRepos();
 loadVisitorName();

@@ -1,18 +1,20 @@
-
 # Technical Documentation
 
 ## Overview
-This project is an advanced portfolio website developed for Assignment 3. It builds on the earlier portfolio assignments and adds more advanced functionality, including API integration, state management, and improved logic.
+This project is an advanced portfolio website developed for Assignment 3.  
+It builds on the earlier portfolio assignments by adding external API integration, more advanced JavaScript logic, state management, and better documentation.
+
+The project was designed to remain simple, lightweight, and user-friendly while still meeting the required assignment features.
 
 ## Main Features
-- GitHub API integration to display live repositories
+- GitHub API integration to display live public repositories
 - Project filtering by category
-- Project sorting by title or date
+- Project sorting by title and date
 - Project search functionality
-- Dark/light mode toggle with localStorage
-- Visitor name persistence using localStorage
+- Dark/light mode toggle
+- Visitor name storage and display
 - Contact form validation
-- Responsive design
+- Responsive layout for different screen sizes
 
 ## Technologies Used
 - HTML5
@@ -21,54 +23,37 @@ This project is an advanced portfolio website developed for Assignment 3. It bui
 - GitHub REST API
 
 ## File Responsibilities
-- `index.html`: page structure and content
-- `css/styles.css`: all styling and responsive layout
-- `js/script.js`: logic, API calls, localStorage handling, validation, and interactivity
+
+### `index.html`
+Contains the structure of the website, including:
+- navigation bar
+- hero section
+- about section
+- projects section
+- GitHub repositories section
+- visitor greeting section
+- contact form
+- footer
+
+### `css/styles.css`
+Contains:
+- page styling
+- color variables
+- dark mode design
+- responsive layout rules
+- card layout and section styling
+
+### `js/script.js`
+Contains all interactive logic, including:
+- dark mode toggle and storage
+- project filtering, sorting, and search
+- GitHub API fetching
+- visitor name saving and clearing
+- contact form validation
 
 ## API Integration
-The project uses the GitHub REST API:
-- Endpoint: `https://api.github.com/users/DanahAlalwan/repos`
+This project uses the GitHub REST API to fetch public repositories dynamically.
 
-The API is used to fetch public repositories and display:
-- repository name
-- description
-- programming language
-- link to GitHub repository
-
-If the API request fails, the application shows a user-friendly error message.
-
-## Complex Logic
-The project combines multiple conditions in the projects section:
-- filter by category
-- sort by title or date
-- search by keyword
-
-This creates a more advanced interactive experience compared to simple one-click actions.
-
-## State Management
-The website uses `localStorage` for:
-- saving the selected theme
-- saving the visitor name
-
-This allows the app to remember user choices between visits.
-
-## Performance Improvements
-The following performance improvements were considered:
-- clean and reusable CSS/JS
-- no unnecessary libraries
-- responsive layout
-- simple lightweight design
-- ability to add lazy loading for future images
-
-## Challenges
-Some challenges included:
-- combining filtering, sorting, and searching in one function
-- handling API errors properly
-- keeping the project simple while still meeting all assignment requirements
-
-## Future Improvements
-Possible future upgrades:
-- add more project cards dynamically
-- deploy the project online
-- add loading animations
-- connect the contact form to a backend service
+**Endpoint used:**
+```text
+https://api.github.com/users/DanahAlalwan/repos
