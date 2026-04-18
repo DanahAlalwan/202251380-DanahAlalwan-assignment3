@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danah Alalwan | Portfolio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <h1 class="logo">Danah Alalwan</h1>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#github-projects">GitHub</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="themeToggle" class="theme-btn">Toggle Theme</button>
+    </nav>
+  </header>
 
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Welcome to My Portfolio</h2>
+        <p>I am Danah Alalwan, a Software Engineering student passionate about web development, problem solving, and building user-friendly applications.</p>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p>
+        I enjoy creating clean and interactive web applications. This portfolio highlights my projects,
+        demonstrates API integration, advanced JavaScript logic, state management, and performance improvements.
+      </p>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>My Projects</h2>
+
+      <div class="controls">
+        <div class="control-group">
+          <label for="categoryFilter">Filter by Category:</label>
+          <select id="categoryFilter">
+            <option value="all">All</option>
+            <option value="web">Web</option>
+            <option value="javascript">JavaScript</option>
+            <option value="react">React</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="sortProjects">Sort By:</label>
+          <select id="sortProjects">
+            <option value="default">Default</option>
+            <option value="title">Title (A-Z)</option>
+            <option value="date-new">Newest First</option>
+            <option value="date-old">Oldest First</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="searchInput">Search:</label>
+          <input type="text" id="searchInput" placeholder="Search projects..." />
+        </div>
+      </div>
+
+      <div id="projects-container" class="project-grid">
+        <div class="project-card"
+             data-category="web"
+             data-title="Portfolio Website"
+             data-date="2026-03-20">
+          <h3>Portfolio Website</h3>
+          <p>A personal portfolio website showcasing my skills and projects.</p>
+          <span class="tag">Web</span>
+        </div>
+
+        <div class="project-card"
+             data-category="javascript"
+             data-title="Task Manager"
+             data-date="2026-03-10">
+          <h3>Task Manager</h3>
+          <p>A JavaScript-based app for managing daily tasks with dynamic interaction.</p>
+          <span class="tag">JavaScript</span>
+        </div>
+
+        <div class="project-card"
+             data-category="react"
+             data-title="Student Cards App"
+             data-date="2026-02-15">
+          <h3>Student Cards App</h3>
+          <p>A React application that displays student cards using reusable components.</p>
+          <span class="tag">React</span>
+        </div>
+
+        <div class="project-card"
+             data-category="web"
+             data-title="StockMind"
+             data-date="2026-04-05">
+          <h3>StockMind</h3>
+          <p>A beginner-friendly platform for stock analysis and investment simulation.</p>
+          <span class="tag">Web</span>
+        </div>
+      </div>
+
+      <p id="noResultsMessage" class="message"></p>
+    </section>
+
+    <section id="github-projects" class="section">
+      <h2>Live GitHub Repositories</h2>
+      <p>This section fetches my public repositories using the GitHub API.</p>
+      <div id="repo-container" class="repo-grid"></div>
+      <p id="repo-message" class="message"></p>
+    </section>
+
+    <section id="visitor-section" class="section">
+      <h2>Personalized Greeting</h2>
+      <p>Enter your name and the site will remember it.</p>
+      <div class="visitor-box">
+        <input type="text" id="visitorName" placeholder="Enter your name" />
+        <button id="saveNameBtn">Save Name</button>
+        <button id="clearNameBtn">Clear Name</button>
+      </div>
+      <p id="welcomeMessage" class="message"></p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact Me</h2>
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="Your Name" />
+        <input type="email" id="email" placeholder="Your Email" />
+        <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="form-feedback" class="message"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Danah Alalwan. All rights reserved.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
